@@ -24,7 +24,7 @@ class NewsRemoteDataSource : NewsDataSource {
 
     override fun getSources(): Observable<List<Source>> {
         val locale = Locale.getDefault()
-        val response = service.getSources(null, locale.language, locale.country)
+        val response = service.getSources(null, locale.language, null/*TODO locale.country*/)
         //TODO check that response.status is OK
         return response.map { it.sources }
     }
