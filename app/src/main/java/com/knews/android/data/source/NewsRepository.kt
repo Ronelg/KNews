@@ -14,7 +14,7 @@ class NewsRepository(private val newsRemoteDataSource: NewsRemoteDataSource,
 
 
     override fun getSources(): Observable<List<SourcesResponse>> {
-        return Observable.empty()
+        return newsLocalDataSource.getSources()
     }
 
     override fun getArticles(): Observable<List<ArticlesResponse>> {
