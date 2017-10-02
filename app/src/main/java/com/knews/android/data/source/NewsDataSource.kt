@@ -9,7 +9,7 @@ import io.reactivex.Observable
  */
 interface NewsDataSource {
 
-    fun getArticles(source: Source? = null): Observable<List<Article>>
+    fun getArticles(sourceId: String): Observable<List<Article>>
 
     fun getSources(): Observable<List<Source>>
 

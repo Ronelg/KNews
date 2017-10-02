@@ -29,12 +29,8 @@ class NewsRemoteDataSource : NewsDataSource {
         return response.map { it.sources }
     }
 
-    override fun getArticles(source: Source?): Observable<List<Article>> {
-        if (source == null) {
-            return Observable.empty()
-        }
-        //TODO check that response.status is OK
-        val response = service.getArticles(source.id, BuildConfig.NEWS_API_KEY)
+    override fun getArticles(sourceId: String): Observable<List<Article>> {
+        val response = service.getArticles(sourceId, BuildConfig.NEWS_API_KEY)
         return response.map { it.articles }
     }
 

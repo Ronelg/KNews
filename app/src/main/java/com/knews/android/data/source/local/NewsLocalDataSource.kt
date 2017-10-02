@@ -16,7 +16,7 @@ class NewsLocalDataSource(context: Context) : NewsDataSource {
         return Observable.empty()
     }
 
-    override fun getArticles(source: Source?): Observable<List<Article>> {
+    override fun getArticles(sourceId: String): Observable<List<Article>> {
         return Observable.empty()
     }
 

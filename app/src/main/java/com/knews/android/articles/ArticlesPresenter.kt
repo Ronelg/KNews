@@ -9,8 +9,10 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by asafvaron on 02/10/2017.
  */
-class ArticlesPresenter(private val newsRepository: NewsRepository,
-                        private val articlesView: ArticlesContract.View)
+class ArticlesPresenter(
+        private val sourceId: String,
+        private val newsRepository: NewsRepository,
+        private val articlesView: ArticlesContract.View)
     : ArticlesContract.Presenter {
 
     init {
@@ -21,7 +23,7 @@ class ArticlesPresenter(private val newsRepository: NewsRepository,
 
     override fun subscribe() {
         Log.d("ArticlesPresenter", "subscribe")
-        val disposable = newsRepository.getArticles()
+        val disposable = newsRepository.getArticles(sourceId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ res ->

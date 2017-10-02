@@ -21,11 +21,7 @@ class ArticlesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.articles_activity)
-        init()
-    }
 
-    private fun init() {
-        Log.d(TAG, "init")
         // Set up the toolbar.
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -35,8 +31,20 @@ class ArticlesActivity : AppCompatActivity() {
             it.setHomeAsUpIndicator(R.drawable.ic_action_back)
             it.setDisplayHomeAsUpEnabled(true)
         }
+        val id = intent.getStringExtra("id")
 
-        loadArticles(intent.getStringExtra("id"))
+        Log.d(TAG, "loadArticles, url: $id")
+        val articlesFragment = ArticlesFragment.newInstance(id)
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.frags_container, articlesFragment, articlesFragment.tag)
+                .addToBackStack(null)
+                .commit()
+
+        // init Articles presenter
+        articlePresenter = ArticlesPresenter(id, NewsRepository.getInstance(
+                NewsRemoteDataSource.getInstance(),
+                NewsLocalDataSource.getInstance(applicationContext)),
+                articlesFragment)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -56,18 +64,4 @@ class ArticlesActivity : AppCompatActivity() {
                 .commit()
     }
 
-    private fun loadArticles(id: String) {
-        Log.d(TAG, "loadArticles, url: $id")
-        val articlesFragment = ArticlesFragment.newInstance(id)
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.frags_container, articlesFragment, articlesFragment.tag)
-                .addToBackStack(null)
-                .commit()
-
-        // init Articles presenter
-        articlePresenter = ArticlesPresenter(NewsRepository.getInstance(
-                NewsRemoteDataSource.getInstance(),
-                NewsLocalDataSource.getInstance(applicationContext)),
-                articlesFragment)
-    }
 }
