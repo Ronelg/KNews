@@ -37,7 +37,6 @@ class ArticlesActivity : AppCompatActivity() {
         val articlesFragment = ArticlesFragment.newInstance(id)
         supportFragmentManager.beginTransaction()
                 .replace(R.id.frags_container, articlesFragment, articlesFragment.tag)
-                .addToBackStack(null)
                 .commit()
 
         // init Articles presenter
