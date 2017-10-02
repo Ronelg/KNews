@@ -17,7 +17,7 @@ interface NewsService {
                    @Query("country") country: String?): SourcesResponse
 
     @GET("articles")
-    fun getNewsApi(@Query("source") source: String,
-                   @Query("apiKey") apiKey: String,
-                   @Query("sortBy") sortBy: SortBy? = SortBy.TOP): ArticlesResponse
+    fun getArticles(@Query("source") source: String,
+                    @Query("apiKey") apiKey: String,
+                    @Query("sortBy") sortBy: SortBy? = SortBy.TOP): ArticlesResponse
 }
