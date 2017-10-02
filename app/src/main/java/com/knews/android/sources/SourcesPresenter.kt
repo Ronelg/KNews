@@ -22,8 +22,8 @@ class SourcesPresenter(private val newsRepository: NewsRepository,
     override fun subscribe() {
         Log.d("SourcesPresenter", "subscribe")
         val disposable = newsRepository.getSources()
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe({ res ->
                     sourcesView.showSources(res)
                 }, { t ->

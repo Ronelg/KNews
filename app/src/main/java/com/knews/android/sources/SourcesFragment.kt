@@ -8,14 +8,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.knews.android.MainActivity
 import com.knews.android.R
 import com.knews.android.data.Source
 
 /**
  * Created by asafvaron on 02/10/2017.
  */
-class SourcesFragment: Fragment(), SourcesContract.View, SourcesAdapter.SourcesClickListener {
+class SourcesFragment: Fragment(), SourcesContract.View {
 
     private val TAG: String = "SourcesFragment"
 
@@ -46,7 +45,7 @@ class SourcesFragment: Fragment(), SourcesContract.View, SourcesAdapter.SourcesC
     }
 
     private fun setupRecyclerView(recyclerNews: RecyclerView) {
-        sourcesAdapter = SourcesAdapter(this)
+        sourcesAdapter = SourcesAdapter()
         recyclerNews.layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.VERTICAL, false)
         recyclerNews.adapter = sourcesAdapter
@@ -55,12 +54,6 @@ class SourcesFragment: Fragment(), SourcesContract.View, SourcesAdapter.SourcesC
     override fun showSources(sources: List<Source>) {
         Log.d(TAG, "showSources, source: $sources")
         sourcesAdapter.setItems(sources)
-    }
-
-    override fun onSourceClicked(id: String) {
-        if (activity is MainActivity) {
-            (activity as MainActivity).loadArticles(id)
-        }
     }
 
     companion object {

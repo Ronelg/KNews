@@ -1,5 +1,6 @@
 package com.knews.android.sources
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,19 +9,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.knews.android.R
+import com.knews.android.articles.ArticlesActivity
 import com.knews.android.data.Source
 
 /**
  * Created by asafvaron on 02/10/2017.
  */
-class SourcesAdapter(private var clickListener: SourcesClickListener)
-    : RecyclerView.Adapter<SourcesAdapter.SourceItemViewHolder>() {
+class SourcesAdapter : RecyclerView.Adapter<SourcesAdapter.SourceItemViewHolder>() {
 
     var data: List<Source> = emptyList()
-
-    interface SourcesClickListener {
-        fun onSourceClicked(id: String)
-    }
 
     fun setItems(items: List<Source>) {
         this.data = items
@@ -36,10 +33,14 @@ class SourcesAdapter(private var clickListener: SourcesClickListener)
         holder.sourceName.text = source.name
         holder.sourceDescription.text = source.description
         Glide.with(context)
-                .load(source.getLogo())
+                .load(source.logo)
                 .into(holder.sourceImage)
 
-        holder.itemView.setOnClickListener { clickListener.onSourceClicked(source.id) }
+        holder.itemView.setOnClickListener {
+            val i = Intent(context, ArticlesActivity::class.java)
+            i.putExtra("id", source.id)
+            context.startActivity(i)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SourceItemViewHolder {

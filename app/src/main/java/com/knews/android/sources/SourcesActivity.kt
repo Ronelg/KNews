@@ -1,4 +1,4 @@
-package com.knews.android
+package com.knews.android.sources
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -6,22 +6,17 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.MenuItem
-import com.knews.android.articles.ArticlesFragment
-import com.knews.android.articles.ArticlesPresenter
+import com.knews.android.R
 import com.knews.android.data.source.NewsRepository
 import com.knews.android.data.source.local.NewsLocalDataSource
 import com.knews.android.data.source.remote.NewsRemoteDataSource
-import com.knews.android.sources.SourcesFragment
-import com.knews.android.sources.SourcesPresenter
 
-class MainActivity : AppCompatActivity() {
+class SourcesActivity : AppCompatActivity() {
 
-    private val TAG: String = "MainActivity"
+    private val TAG: String = "SourcesActivity"
 
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var articlePresenter: ArticlesPresenter
     private lateinit var sourcesPresenter: SourcesPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,29 +73,5 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawers()
             true
         }
-    }
-
-    fun loadWebArticle(url: String?) {
-        Log.d(TAG, "loadWebArticle, url: $url")
-        val webArticleFragment = WebArticleFragment.newInstance(url)
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.frags_container, webArticleFragment, webArticleFragment.tag)
-                .addToBackStack(null)
-                .commit()
-    }
-
-    fun loadArticles(id: String) {
-        Log.d(TAG, "loadArticles, url: $id")
-        val articlesFragment = ArticlesFragment.newInstance(id)
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.frags_container, articlesFragment, articlesFragment.tag)
-                .addToBackStack(null)
-                .commit()
-
-        // init Articles presenter
-        articlePresenter = ArticlesPresenter(NewsRepository.getInstance(
-                NewsRemoteDataSource.getInstance(),
-                NewsLocalDataSource.getInstance(applicationContext)),
-                articlesFragment)
     }
 }

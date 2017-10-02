@@ -15,6 +15,5 @@ interface SourcesContract {
     }
 
     interface Presenter: BasePresenter {
-
     }
 }

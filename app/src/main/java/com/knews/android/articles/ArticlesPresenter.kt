@@ -22,8 +22,8 @@ class ArticlesPresenter(private val newsRepository: NewsRepository,
     override fun subscribe() {
         Log.d("ArticlesPresenter", "subscribe")
         val disposable = newsRepository.getArticles()
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe({ res ->
                     articlesView.showArticles(res)
                 }, { t ->
