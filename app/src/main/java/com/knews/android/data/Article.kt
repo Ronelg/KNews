@@ -13,7 +13,7 @@ data class Article(
         @SerializedName("author")
         @ColumnInfo(name = "author")
         val author: String? = null,
-        @ColumnInfo(name = "author")
+        @ColumnInfo(name = "title")
         @SerializedName("title")
         val title: String? = null,
         @ColumnInfo(name = "description")
