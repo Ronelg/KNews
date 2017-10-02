@@ -20,6 +20,7 @@ class ArticlesPresenter(private val newsRepository: NewsRepository,
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     override fun subscribe() {
+        Log.d("ArticlesPresenter", "subscribe")
         val disposable = newsRepository.getArticles()
                 .observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
