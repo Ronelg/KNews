@@ -13,7 +13,7 @@ class NewsRepository(private val newsRemoteDataSource: NewsRemoteDataSource,
                      private val newsLocalDataSource: NewsLocalDataSource) : NewsDataSource {
 
     override fun getSources(): Observable<List<Source>> {
-        return newsLocalDataSource.getSources()
+        return newsRemoteDataSource.getSources()
     }
 
     override fun getArticles(source: Source?): Observable<List<Article>> {
