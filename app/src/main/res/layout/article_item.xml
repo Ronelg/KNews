@@ -1,46 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:orientation="vertical">
+    android:layout_margin="5dp"
+    app:cardElevation="8dp">
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:src="@mipmap/ic_logo"
-        tools:ignore="ContentDescription"/>
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/image"
+        android:layout_margin="10dp"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_logo"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cape Town Has No Water"/>
+            android:layout_alignBottom="@+id/image"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/image"
+            android:gravity="center"
+            android:text="Cape Town Has No Water"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cape Town is dried out, by Fabuary 2018 all citizens will have to evacuate."/>
+            android:layout_below="@+id/image"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Asaf Varon"/>
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:maxLines="4"
+                android:textColor="@color/gray"
+                android:text="Cape Town is dried out, by Fabuary 2018 all citizens will have to evacuate." />
 
-        <TextView
-            android:id="@+id/published_at"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2017-10-01T18:46:10Z"/>
-    </LinearLayout>
-</RelativeLayout>
+            <TextView
+                android:id="@+id/author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:text="Asaf Varon"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/published_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="2017-10-01T18:46:10Z"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
