@@ -1,6 +1,7 @@
 package com.knews.android.articles
 
 import android.support.v7.widget.RecyclerView
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,7 @@ class ArticlesAdapter(private var clickListener: ArticleClickListener)
         holder.title.text = article.title
         holder.author.text = article.author
         holder.description.text = article.description
-        holder.publishedAt.text = article.publishedAt
+        holder.publishedAt.text = if (article.publishedAt != null) DateUtils.formatDateTime(context, article.publishedAt.time, DateUtils.FORMAT_SHOW_DATE.or(DateUtils.FORMAT_SHOW_TIME)) else null
         Glide.with(context)
                 .load(article.imageUrl)
                 .into(holder.image)
