@@ -1,9 +1,9 @@
 package com.knews.android.data.source
 
+import com.knews.android.data.Article
+import com.knews.android.data.Source
 import com.knews.android.data.source.local.NewsLocalDataSource
 import com.knews.android.data.source.remote.NewsRemoteDataSource
-import com.knews.android.model.ArticlesResponse
-import com.knews.android.model.SourcesResponse
 import io.reactivex.Observable
 
 /**
@@ -12,12 +12,11 @@ import io.reactivex.Observable
 class NewsRepository(private val newsRemoteDataSource: NewsRemoteDataSource,
                      private val newsLocalDataSource: NewsLocalDataSource) : NewsDataSource {
 
-
-    override fun getSources(): Observable<List<SourcesResponse>> {
+    override fun getSources(): Observable<List<Source>> {
         return newsLocalDataSource.getSources()
     }
 
-    override fun getArticles(): Observable<List<ArticlesResponse>> {
+    override fun getArticles(source: Source?): Observable<List<Article>> {
         return newsRemoteDataSource.getArticles()
     }
 
