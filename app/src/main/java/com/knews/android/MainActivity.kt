@@ -51,14 +51,14 @@ class MainActivity : AppCompatActivity() {
                 .commit()
 
         sourcesPresenter = SourcesPresenter(NewsRepository.getInstance(
-                NewsRemoteDataSource.getInstance(applicationContext),
+                NewsRemoteDataSource.getInstance(),
                 NewsLocalDataSource.getInstance(applicationContext)),
                 sourcesFragment)
 
         // init Articles fragment
         val articlesFragment = ArticlesFragment.newInstance()
         articlePresenter = ArticlesPresenter(NewsRepository.getInstance(
-                NewsRemoteDataSource.getInstance(applicationContext),
+                NewsRemoteDataSource.getInstance(),
                 NewsLocalDataSource.getInstance(applicationContext)),
                 articlesFragment)
     }

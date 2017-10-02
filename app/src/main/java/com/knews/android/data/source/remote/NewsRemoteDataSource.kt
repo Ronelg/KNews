@@ -1,6 +1,5 @@
 package com.knews.android.data.source.remote
 
-import android.content.Context
 import com.knews.android.BuildConfig
 import com.knews.android.data.Article
 import com.knews.android.data.Source
@@ -14,7 +13,7 @@ import javax.inject.Inject
 /**
  * Created by ronelg on 10/2/17.
  */
-class NewsRemoteDataSource(context: Context) : NewsDataSource {
+class NewsRemoteDataSource : NewsDataSource {
 
     @Inject
     lateinit var service: NewsService
@@ -43,16 +42,16 @@ class NewsRemoteDataSource(context: Context) : NewsDataSource {
     }
 
     companion object {
-        private lateinit var instance: NewsRemoteDataSource
+        private lateinit var INSTANCE: NewsRemoteDataSource
         private var needsNewInstance = true
 
         @JvmStatic
-        fun getInstance(context: Context): NewsRemoteDataSource {
+        fun getInstance(): NewsRemoteDataSource {
             if (needsNewInstance) {
-                instance = NewsRemoteDataSource(context)
+                INSTANCE = NewsRemoteDataSource()
                 needsNewInstance = false
             }
-            return instance
+            return INSTANCE
         }
     }
 }
