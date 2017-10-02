@@ -2,7 +2,7 @@ package com.knews.android.model
 
 import com.google.gson.annotations.SerializedName
 import com.knews.android.data.Article
-import com.knews.android.data.SortBy
+import com.knews.android.data.Source.SortBy
 
 /**
  * Created by ronelg on 10/2/17.

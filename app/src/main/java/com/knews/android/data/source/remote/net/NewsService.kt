@@ -1,6 +1,6 @@
 package com.knews.android.data.source.remote.net
 
-import com.knews.android.data.SortBy
+import com.knews.android.data.Source.SortBy
 import com.knews.android.model.ArticlesResponse
 import com.knews.android.model.SourcesResponse
 import io.reactivex.Observable
