@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.knews.android.R
 import com.knews.android.data.Source
+import com.knews.android.sources.util.SpaceItemDecoration
 
 /**
  * Created by asafvaron on 02/10/2017.
@@ -46,8 +47,14 @@ class SourcesFragment: Fragment(), SourcesContract.View {
 
     private fun setupRecyclerView(recyclerNews: RecyclerView) {
         sourcesAdapter = SourcesAdapter()
+
+        val padding = resources.getDimensionPixelOffset(R.dimen.list_item_padding)
+
+        recyclerNews.addItemDecoration(SpaceItemDecoration(
+                padding, padding / 2))
         recyclerNews.layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.VERTICAL, false)
+
         recyclerNews.adapter = sourcesAdapter
     }
 
