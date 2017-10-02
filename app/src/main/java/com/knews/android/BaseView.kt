@@ -1,7 +1,7 @@
 package com.knews.android
 
-interface BaseView<T> {
+interface BaseView<P: BasePresenter> {
 
-    var presenter: T?
+    var presenter: P?
 
 }

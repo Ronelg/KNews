@@ -18,13 +18,19 @@ class NetworkModule {
 
     private val BASE_URL = "https://newsapi.org/v1/"
 
-    @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit {
+    internal fun provideOkHttpClient(): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
+        return OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(client)

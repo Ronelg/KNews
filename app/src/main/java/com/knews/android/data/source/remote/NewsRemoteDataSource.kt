@@ -4,7 +4,7 @@ import com.knews.android.BuildConfig
 import com.knews.android.data.Article
 import com.knews.android.data.Source
 import com.knews.android.data.source.NewsDataSource
-import com.knews.android.di.modules.NetworkModule
+import com.knews.android.di.components.DaggerApplicationComponent
 import com.knews.android.network.NewsService
 import io.reactivex.Observable
 import java.util.*
@@ -19,10 +19,7 @@ class NewsRemoteDataSource : NewsDataSource {
     lateinit var service: NewsService
 
     init {
-        //FIXME DaggerNewsComponent.builder().build().inject(this)
-        val net = NetworkModule()
-        val retrofit = net.provideRetrofit()
-        service = net.provideNewsService(retrofit)
+        DaggerApplicationComponent.builder().build().inject(this)
     }
 
     override fun getSources(): Observable<List<Source>> {
