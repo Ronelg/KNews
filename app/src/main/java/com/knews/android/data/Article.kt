@@ -1,7 +1,7 @@
 package com.knews.android.data
 
 import com.google.gson.annotations.SerializedName
-import java.util.Calendar
+import java.util.*
 
 /**
  * Created by ronelg on 10/2/17.
@@ -16,7 +16,7 @@ data class Article(
         @SerializedName("url")
         val url: String? = null,
         @SerializedName("urlToImage")
-        val image: String? = null,
+        val imageUrl: String? = null,
         @SerializedName("publishedAt")
         val publishedAt: Calendar? = null) {
 }

@@ -59,8 +59,11 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding:$rxkbinding2_version"
     implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rxkbinding2_version"
 
+    //Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
 
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
     //Test
     androidTestImplementation("com.android.support.test.espresso:espresso-core:$espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'

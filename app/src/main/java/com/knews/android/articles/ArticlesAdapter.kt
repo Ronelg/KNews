@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.knews.android.R
 import com.knews.android.data.Article
 
@@ -25,7 +26,16 @@ class ArticlesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val article = data[position]
+        val context = holder.itemView.context
+        val h = holder as ArticleItemViewHolder
+        h.title.text = article.title
+        h.author.text = article.author
+        h.description.text = article.description
+        h.publishedAt.text = article.publishedAt.toString()
+        Glide.with(context)
+                .load(article.imageUrl)
+                .into(h.image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
