@@ -1,11 +1,11 @@
 package com.knews.android.data.source.remote
 
 import com.knews.android.BuildConfig
-import com.knews.android.DaggerNewsComponent
 import com.knews.android.data.Article
 import com.knews.android.data.Source
 import com.knews.android.data.source.NewsDataSource
-import com.knews.android.data.source.remote.net.NewsService
+import com.knews.android.di.components.DaggerApplicationComponent
+import com.knews.android.network.NewsService
 import io.reactivex.Observable
 import java.util.*
 import javax.inject.Inject
@@ -19,7 +19,7 @@ class NewsRemoteDataSource : NewsDataSource {
     lateinit var service: NewsService
 
     init {
-        DaggerNewsComponent.builder().build().inject(this)
+        DaggerApplicationComponent.builder().build().inject(this)
     }
 
     override fun getSources(): Observable<List<Source>> {
