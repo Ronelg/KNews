@@ -14,7 +14,7 @@ import com.knews.android.data.Article
  * Created by asafvaron on 02/10/2017.
  */
 class ArticlesAdapter(private var clickListener: ArticleClickListener)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    : RecyclerView.Adapter<ArticlesAdapter.ArticleItemViewHolder>() {
 
     var data: List<Article> = emptyList()
 
