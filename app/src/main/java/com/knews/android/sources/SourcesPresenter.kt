@@ -1,4 +1,4 @@
-package com.knews.android.articles
+package com.knews.android.sources
 
 import android.util.Log
 import com.knews.android.data.source.NewsRepository
@@ -9,24 +9,24 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by asafvaron on 02/10/2017.
  */
-class ArticlesPresenter(private val newsRepository: NewsRepository,
-                        private val articlesView: ArticlesContract.View)
-    : ArticlesContract.Presenter {
+class SourcesPresenter(private val newsRepository: NewsRepository,
+                       private val sourcesView: SourcesContract.View)
+    : SourcesContract.Presenter {
 
     init {
-        articlesView.presenter = this
+        sourcesView.presenter = this
     }
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     override fun subscribe() {
-        val disposable = newsRepository.getArticles()
+        val disposable = newsRepository.getSources()
                 .observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe({ res ->
-                    articlesView.showArticles(res)
+                    sourcesView.showSources(res)
                 }, { t ->
-                    Log.e("getArticles", "ERR: $t")
+                    Log.e("getSources", "ERR: $t")
                 })
 
         disposables.add(disposable)

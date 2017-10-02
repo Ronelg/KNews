@@ -40,13 +40,13 @@ data class Source(
     fun getLogo(): String {
         return "https://icons.better-idea.org/icon?url=$url&amp;size=70..120..200"
     }
-}
 
-enum class SortBy {
-    @SerializedName("top")
-    TOP,
-    @SerializedName("latest")
-    LATEST,
-    @SerializedName("popular")
-    POPULAR
+    enum class SortBy {
+        @SerializedName("top")
+        TOP,
+        @SerializedName("latest")
+        LATEST,
+        @SerializedName("popular")
+        POPULAR
+    }
 }

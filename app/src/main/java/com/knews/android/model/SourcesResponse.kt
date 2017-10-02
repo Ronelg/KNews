@@ -1,6 +1,6 @@
 package com.knews.android.model
 
-import javax.xml.transform.Source
+import com.knews.android.data.Source
 
 /**
  * Created by ronelg on 10/2/17.

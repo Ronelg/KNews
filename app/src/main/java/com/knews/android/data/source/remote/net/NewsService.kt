@@ -1,9 +1,9 @@
 package com.knews.android.data.source.remote.net
 
-import com.knews.android.data.SortBy
+import com.knews.android.data.Source.SortBy
 import com.knews.android.model.ArticlesResponse
 import com.knews.android.model.SourcesResponse
-import retrofit2.Call
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -15,10 +15,10 @@ interface NewsService {
     @GET("sources")
     fun getSources(@Query("category") category: String?,
                    @Query("language") language: String?,
-                   @Query("country") country: String?): Call<SourcesResponse>
+                   @Query("country") country: String?): Observable<SourcesResponse>
 
     @GET("articles")
     fun getArticles(@Query("source") source: String,
                     @Query("apiKey") apiKey: String,
-                    @Query("sortBy") sortBy: SortBy? = SortBy.TOP): Call<ArticlesResponse>
+                    @Query("sortBy") sortBy: SortBy? = SortBy.TOP): Observable<ArticlesResponse>
 }

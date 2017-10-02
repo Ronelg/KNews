@@ -1,7 +1,7 @@
 package com.knews.android.data.source
 
-import com.knews.android.model.ArticlesResponse
-import com.knews.android.model.SourcesResponse
+import com.knews.android.data.Article
+import com.knews.android.data.Source
 import io.reactivex.Observable
 
 /**
@@ -9,8 +9,8 @@ import io.reactivex.Observable
  */
 interface NewsDataSource {
 
-    fun getArticles(): Observable<List<ArticlesResponse>>
+    fun getArticles(source: Source? = null): Observable<List<Article>>
 
-    fun getSources(): Observable<List<SourcesResponse>>
+    fun getSources(): Observable<List<Source>>
 
 }
