@@ -11,35 +11,36 @@
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:src="@mipmap/ic_logo"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <LinearLayout
-        android:layout_below="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cape Town Has No Water" />
+            android:text="Cape Town Has No Water"/>
 
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cape Town is dried out, by Fabuary 2018 all citizens will have to evacuate." />
+            android:text="Cape Town is dried out, by Fabuary 2018 all citizens will have to evacuate."/>
 
         <TextView
             android:id="@+id/author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Asaf Varon" />
+            android:text="Asaf Varon"/>
 
         <TextView
             android:id="@+id/published_at"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2017-10-01T18:46:10Z" />
+            android:text="2017-10-01T18:46:10Z"/>
     </LinearLayout>
 </RelativeLayout>
