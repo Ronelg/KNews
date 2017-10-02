@@ -24,7 +24,7 @@ class ArticlesPresenter(private val newsRepository: NewsRepository,
                 .observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe({ res ->
-                    articlesView.showArticles(res.flatMap { it.articles })
+                    articlesView.showArticles(res)
                 }, { t ->
                     Log.e("getArticles", "ERR: $t")
                 })

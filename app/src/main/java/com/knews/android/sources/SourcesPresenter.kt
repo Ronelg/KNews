@@ -24,7 +24,7 @@ class SourcesPresenter(private val newsRepository: NewsRepository,
                 .observeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe({ res ->
-                    sourcesView.showSources(res.flatMap { it.sources })
+                    sourcesView.showSources(res)
                 }, { t ->
                     Log.e("getSources", "ERR: $t")
                 })
