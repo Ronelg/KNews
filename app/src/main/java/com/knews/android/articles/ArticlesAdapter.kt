@@ -24,6 +24,7 @@ class ArticlesAdapter(private var clickListener: ArticleClickListener)
 
     fun setItems(items: List<Article>) {
         this.data = items
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {

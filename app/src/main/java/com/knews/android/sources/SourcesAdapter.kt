@@ -21,6 +21,7 @@ class SourcesAdapter : RecyclerView.Adapter<SourcesAdapter.SourceItemViewHolder>
 
     fun setItems(items: List<Source>) {
         this.data = items
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
