@@ -14,7 +14,7 @@ import com.knews.android.data.Source
  * Created by asafvaron on 02/10/2017.
  */
 class SourcesAdapter(private var clickListener: SourcesClickListener)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    : RecyclerView.Adapter<SourcesAdapter.SourceItemViewHolder>() {
 
     var data: List<Source> = emptyList()
 
@@ -26,27 +26,26 @@ class SourcesAdapter(private var clickListener: SourcesClickListener)
         this.data = items
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val source = data[position]
-        val context = holder.itemView.context
-        val h = holder as SourcesAdapter.SourceItemViewHolder
-        h.sourceName.text = source.name
-        h.sourceDescription.text = source.description
-        Glide.with(context)
-                .load(source.getLogo())
-                .into(h.sourceImage)
-
-        h.itemView.setOnClickListener { clickListener.onSourceClicked(source.id) }
+    override fun getItemCount(): Int {
+        return data.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onBindViewHolder(holder: SourceItemViewHolder, position: Int) {
+        val source = data[position]
+        val context = holder.itemView.context
+        holder.sourceName.text = source.name
+        holder.sourceDescription.text = source.description
+        Glide.with(context)
+                .load(source.getLogo())
+                .into(holder.sourceImage)
+
+        holder.itemView.setOnClickListener { clickListener.onSourceClicked(source.id) }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SourceItemViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.source_item, parent, false)
         return SourceItemViewHolder(view)
-    }
-
-    override fun getItemCount(): Int {
-        return data.size
     }
 
     inner class SourceItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
