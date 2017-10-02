@@ -20,16 +20,15 @@ data class Source(
         val language: String? = null,
         @SerializedName("country")
         val country: String? = null,
-        @SerializedName("urlToLogos")
-        val urlToLogos: UrlToLogos? = null) {
+        @SerializedName("sortBysAvailable")
+        val sortBysAvailable: List<SortBy>? = null) {
 }
 
-data class UrlToLogos(
-        @SerializedName("small")
-        val small: String? = null,
-        @SerializedName("medium")
-        val medium: String? = null,
-        @SerializedName("large")
-        val large: String? = null) {
-
+enum class SortBy {
+    @SerializedName("top")
+    TOP,
+    @SerializedName("latest")
+    LATEST,
+    @SerializedName("popular")
+    POPULAR
 }
