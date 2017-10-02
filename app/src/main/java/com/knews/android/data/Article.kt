@@ -27,5 +27,5 @@ data class Article(
         val imageUrl: String? = null,
         @ColumnInfo(name = "publishedAt")
         @SerializedName("publishedAt")
-        val publishedAt: String? = null) {
+        val publishedAt: Date? = null) {
 }
