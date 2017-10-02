@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         setupDrawerContent(navigationView)
 
-
         val newsFragment = ArticlesFragment.newInstance()
         supportFragmentManager.beginTransaction()
                 .replace(R.id.frags_container, newsFragment, newsFragment.tag)
