@@ -1,4 +1,4 @@
-package com.knews.android.data.source.remote.net
+package com.knews.android.network
 
 import com.knews.android.data.Source.SortBy
 import com.knews.android.model.ArticlesResponse

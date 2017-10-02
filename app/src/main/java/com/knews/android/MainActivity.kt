@@ -14,6 +14,8 @@ import com.knews.android.data.source.local.NewsLocalDataSource
 import com.knews.android.data.source.remote.NewsRemoteDataSource
 import com.knews.android.sources.SourcesFragment
 import com.knews.android.sources.SourcesPresenter
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +27,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
+
+        val ds = NewsRemoteDataSource()
+        val s = ds.getSources()
+        s.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ res ->
+                    println("±!@ res=" + res)
+                }, { t ->
+                    t.printStackTrace()
+                })
     }
 
     private fun init() {
