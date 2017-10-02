@@ -13,7 +13,7 @@ import com.knews.android.data.Article
 /**
  * Created by asafvaron on 02/10/2017.
  */
-class ArticlesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ArticlesAdapter : RecyclerView.Adapter<ArticlesAdapter.ArticleItemViewHolder>() {
 
     var data: List<Article> = emptyList()
 
@@ -25,20 +25,19 @@ class ArticlesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return data.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ArticleItemViewHolder, position: Int) {
         val article = data[position]
         val context = holder.itemView.context
-        val h = holder as ArticleItemViewHolder
-        h.title.text = article.title
-        h.author.text = article.author
-        h.description.text = article.description
-        h.publishedAt.text = article.publishedAt.toString()
+        holder.title.text = article.title
+        holder.author.text = article.author
+        holder.description.text = article.description
+        holder.publishedAt.text = article.publishedAt
         Glide.with(context)
                 .load(article.imageUrl)
-                .into(h.image)
+                .into(holder.image)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleItemViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.article_item, parent, false)
 

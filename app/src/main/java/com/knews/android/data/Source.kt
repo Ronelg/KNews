@@ -37,9 +37,8 @@ data class Source(
         @SerializedName("sortBysAvailable")
         val sortBysAvailable: List<SortBy>? = null) {
 
-    fun getLogo(): String {
-        return "https://icons.better-idea.org/icon?url=$url&amp;size=70..120..200"
-    }
+    val logo: String?
+        get() = if (url != null) "https://icons.better-idea.org/icon?url=$url&size=70..120..200" else null
 
     enum class SortBy {
         @SerializedName("top")

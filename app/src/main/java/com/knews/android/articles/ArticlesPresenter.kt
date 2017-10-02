@@ -26,7 +26,7 @@ class ArticlesPresenter(private val newsRepository: NewsRepository,
                 .subscribe({ res ->
                     articlesView.showArticles(res)
                 }, { t ->
-                    Log.e("getArticles", "ERR: $t")
+                    Log.e("ArticlesPresenter", "getArticles error: $t")
                 })
 
         disposables.add(disposable)
