@@ -8,24 +8,23 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.knews.android.articles.ArticlesFragment
+import com.knews.android.articles.ArticlesPresenter
+import com.knews.android.data.source.NewsRepository
+import com.knews.android.data.source.local.NewsLocalDataSource
+import com.knews.android.data.source.remote.NewsRemoteDataSource
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var articlePresenter: ArticlesPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        initView()
-
-        val newsFragment = ArticlesFragment.newInstance()
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.frags_container, newsFragment, newsFragment.tag)
-                .commit()
+        init()
     }
 
-    private fun initView() {
+    private fun init() {
         // Set up the toolbar.
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -41,6 +40,18 @@ class MainActivity : AppCompatActivity() {
 
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         setupDrawerContent(navigationView)
+
+
+        val newsFragment = ArticlesFragment.newInstance()
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.frags_container, newsFragment, newsFragment.tag)
+                .commit()
+
+        // Create the presenter
+        articlePresenter = ArticlesPresenter(NewsRepository.getInstance(
+                NewsRemoteDataSource.getInstance(applicationContext),
+                NewsLocalDataSource.getInstance(applicationContext)),
+                newsFragment)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

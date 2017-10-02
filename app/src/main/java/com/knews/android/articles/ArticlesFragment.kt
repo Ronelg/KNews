@@ -7,21 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.knews.android.R
+import com.knews.android.data.Article
 
 /**
  * Created by asafvaron on 02/10/2017.
  */
 class ArticlesFragment : Fragment(), ArticlesContract.View {
 
+    override var presenter: ArticlesContract.Presenter? = null
+
     companion object {
         fun newInstance(): ArticlesFragment {
             return ArticlesFragment()
         }
     }
-
-    override var presenter: ArticlesContract.Presenter?
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-        set(value) {}
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater!!.inflate(R.layout.articles_fragment, container, false)
@@ -38,8 +37,7 @@ class ArticlesFragment : Fragment(), ArticlesContract.View {
 
     }
 
+    override fun showArticles(articles: List<Article>) {
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 }

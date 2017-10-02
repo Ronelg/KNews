@@ -1,20 +1,38 @@
 package com.knews.android.articles
 
+import android.util.Log
+import com.knews.android.data.source.NewsRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+
 /**
  * Created by asafvaron on 02/10/2017.
  */
-class ArticlesPresenter(val articlesView: ArticlesContract.View)
+class ArticlesPresenter(private val newsRepository: NewsRepository,
+                        private val articlesView: ArticlesContract.View)
     : ArticlesContract.Presenter {
 
     init {
-
+        articlesView.presenter = this
     }
 
+    private val disposables: CompositeDisposable = CompositeDisposable()
+
     override fun subscribe() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val disposable = newsRepository.getArticles()
+                .observeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe({ res ->
+                    articlesView.showArticles(res.flatMap { it.articles })
+                }, { t ->
+                    Log.e("getArticles", "ERR: $t")
+                })
+
+        disposables.add(disposable)
     }
 
     override fun unsubscribe() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        disposables.clear()
     }
 }
