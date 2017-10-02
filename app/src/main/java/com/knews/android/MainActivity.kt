@@ -31,8 +31,10 @@ class MainActivity : AppCompatActivity() {
         // Set up the toolbar.
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        // show only when inside an article
         supportActionBar?.let {
-            it.setHomeAsUpIndicator(R.drawable.ic_action_back)
+            it.setHomeAsUpIndicator(R.drawable.ic_menu)
             it.setDisplayHomeAsUpEnabled(true)
         }
 
