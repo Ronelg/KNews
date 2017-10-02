@@ -13,9 +13,14 @@ import com.knews.android.data.Article
 /**
  * Created by asafvaron on 02/10/2017.
  */
-class ArticlesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ArticlesAdapter(private var clickListener: ArticleClickListener)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var data: List<Article> = emptyList()
+
+    interface ArticleClickListener {
+        fun onArticleClicked(url: String?)
+    }
 
     fun setItems(items: List<Article>) {
         this.data = items
@@ -36,6 +41,8 @@ class ArticlesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         Glide.with(context)
                 .load(article.imageUrl)
                 .into(h.image)
+
+        h.itemView.setOnClickListener { clickListener.onArticleClicked(article.url) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

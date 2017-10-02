@@ -14,7 +14,7 @@
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:src="@mipmap/ic_logo"
-        android:background="@mipmap/ic_logo"
+        android:background="@color/colorPrimaryDark"
         tools:ignore="ContentDescription" />
 
 </FrameLayout>

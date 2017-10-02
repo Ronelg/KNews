@@ -13,9 +13,14 @@ import com.knews.android.data.Source
 /**
  * Created by asafvaron on 02/10/2017.
  */
-class SourcesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SourcesAdapter(private var clickListener: SourcesClickListener)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var data: List<Source> = emptyList()
+
+    interface SourcesClickListener {
+        fun onSourceClicked(id: String)
+    }
 
     fun setItems(items: List<Source>) {
         this.data = items
@@ -30,6 +35,8 @@ class SourcesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         Glide.with(context)
                 .load(source.getLogo())
                 .into(h.sourceImage)
+
+        h.itemView.setOnClickListener { clickListener.onSourceClicked(source.id) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

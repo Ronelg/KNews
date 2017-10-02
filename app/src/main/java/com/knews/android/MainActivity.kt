@@ -6,6 +6,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.MenuItem
 import com.knews.android.articles.ArticlesFragment
 import com.knews.android.articles.ArticlesPresenter
@@ -16,6 +17,8 @@ import com.knews.android.sources.SourcesFragment
 import com.knews.android.sources.SourcesPresenter
 
 class MainActivity : AppCompatActivity() {
+
+    private val TAG: String = "MainActivity"
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var articlePresenter: ArticlesPresenter
@@ -56,13 +59,6 @@ class MainActivity : AppCompatActivity() {
                 NewsRemoteDataSource.getInstance(),
                 NewsLocalDataSource.getInstance(applicationContext)),
                 sourcesFragment)
-
-        // init Articles fragment
-        val articlesFragment = ArticlesFragment.newInstance()
-        articlePresenter = ArticlesPresenter(NewsRepository.getInstance(
-                NewsRemoteDataSource.getInstance(),
-                NewsLocalDataSource.getInstance(applicationContext)),
-                articlesFragment)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -76,14 +72,35 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupDrawerContent(navigationView: NavigationView) {
         navigationView.setNavigationItemSelectedListener { menuItem ->
-            //                TODO("Add sources to drawer clicks")
-//            if (menuItem.itemId == R.id.callllogs_navigation_menu_item) {
-//            } else if (menuItem.itemId == R.id.bootsrap_navigation_menu_item) {
-//            }
+            // TODO add sources items here
             // Close the navigation drawer when an item is selected.
             menuItem.isChecked = true
             drawerLayout.closeDrawers()
             true
         }
+    }
+
+    fun loadWebArticle(url: String?) {
+        Log.d(TAG, "loadWebArticle, url: $url")
+        val webArticleFragment = WebArticleFragment.newInstance(url)
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.frags_container, webArticleFragment, webArticleFragment.tag)
+                .addToBackStack(null)
+                .commit()
+    }
+
+    fun loadArticles(id: String) {
+        Log.d(TAG, "loadArticles, url: $id")
+        val articlesFragment = ArticlesFragment.newInstance(id)
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.frags_container, articlesFragment, articlesFragment.tag)
+                .addToBackStack(null)
+                .commit()
+
+        // init Articles presenter
+        articlePresenter = ArticlesPresenter(NewsRepository.getInstance(
+                NewsRemoteDataSource.getInstance(),
+                NewsLocalDataSource.getInstance(applicationContext)),
+                articlesFragment)
     }
 }
