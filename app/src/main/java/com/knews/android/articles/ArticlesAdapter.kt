@@ -38,7 +38,10 @@ class ArticlesAdapter(private var clickListener: ArticleClickListener)
         holder.title.text = article.title
         holder.author.text = article.author
         holder.description.text = article.description
-        holder.publishedAt.text = if (article.publishedAt != null) DateUtils.formatDateTime(context, article.publishedAt.time, DateUtils.FORMAT_SHOW_DATE.or(DateUtils.FORMAT_SHOW_TIME)) else null
+        holder.publishedAt.text = if (article.publishedAt != null)
+            DateUtils.formatDateTime(context, article.publishedAt.time,
+                    DateUtils.FORMAT_SHOW_DATE.or(DateUtils.FORMAT_SHOW_TIME)) else null
+
         Glide.with(context)
                 .load(article.imageUrl)
                 .into(holder.image)
