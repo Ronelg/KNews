@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.knews.android.R
 import com.knews.android.data.Article
-import com.knews.android.sources.SourcesActivity
 
 /**
  * Created by asafvaron on 02/10/2017.
@@ -62,8 +61,8 @@ class ArticlesFragment : Fragment(), ArticlesContract.View, ArticlesAdapter.Arti
 
     override fun onArticleClicked(url: String?) {
         Log.d("onArticleClicked", "url: $url")
-        if (activity is SourcesActivity) {
-//            (activity as SourcesActivity).loadWebArticle(url)
+        if (activity is ArticlesActivity) {
+            (activity as ArticlesActivity).loadWebArticle(url)
         }
     }
 
