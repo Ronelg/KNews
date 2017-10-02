@@ -11,6 +11,15 @@ import io.reactivex.Observable
  */
 class NewsLocalDataSource(context: Context) : NewsDataSource {
 
+
+    override fun getSources(): Observable<List<SourcesResponse>> {
+        return Observable.empty()
+    }
+
+    override fun getArticles(): Observable<List<ArticlesResponse>> {
+        return Observable.empty()
+    }
+
     companion object {
         private lateinit var INSTANCE: NewsLocalDataSource
         private var needsNewInstance = true
@@ -23,13 +32,5 @@ class NewsLocalDataSource(context: Context) : NewsDataSource {
             }
             return INSTANCE
         }
-    }
-
-    override fun getSources(): Observable<List<SourcesResponse>> {
-        return Observable.empty()
-    }
-
-    override fun getArticles(): Observable<List<ArticlesResponse>> {
-        return Observable.empty()
     }
 }

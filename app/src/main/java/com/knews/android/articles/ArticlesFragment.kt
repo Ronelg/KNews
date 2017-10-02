@@ -16,11 +16,6 @@ class ArticlesFragment : Fragment(), ArticlesContract.View {
 
     override var presenter: ArticlesContract.Presenter? = null
 
-    companion object {
-        fun newInstance(): ArticlesFragment {
-            return ArticlesFragment()
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater!!.inflate(R.layout.articles_fragment, container, false)
@@ -39,5 +34,11 @@ class ArticlesFragment : Fragment(), ArticlesContract.View {
 
     override fun showArticles(articles: List<Article>) {
 
+    }
+
+    companion object {
+        fun newInstance(): ArticlesFragment {
+            return ArticlesFragment()
+        }
     }
 }
