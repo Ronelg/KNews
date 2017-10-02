@@ -3,7 +3,8 @@ package com.knews.android.data
 /**
  * Created by ronelg on 10/2/17.
  */
-data class Source(val id: String,
+data class Source(
+        val id: String,
         val name: String? = null,
         val description: String? = null,
         val url: String? = null,
