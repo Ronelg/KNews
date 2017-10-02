@@ -19,13 +19,13 @@ android {
         debug {
             applicationIdSuffix ".debug"
 
-            buildConfigField "String", "NEWS_API_KEY", '""'
+            buildConfigField "String", "NEWS_API_KEY", '"260047590c8c4c439b393283a7518e38"'
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            buildConfigField "String", "NEWS_API_KEY", '""'
+            buildConfigField "String", "NEWS_API_KEY", '"260047590c8c4c439b393283a7518e38"'
         }
     }
 }
