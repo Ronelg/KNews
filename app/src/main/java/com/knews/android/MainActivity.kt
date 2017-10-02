@@ -12,11 +12,14 @@ import com.knews.android.articles.ArticlesPresenter
 import com.knews.android.data.source.NewsRepository
 import com.knews.android.data.source.local.NewsLocalDataSource
 import com.knews.android.data.source.remote.NewsRemoteDataSource
+import com.knews.android.sources.SourcesFragment
+import com.knews.android.sources.SourcesPresenter
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var articlePresenter: ArticlesPresenter
+    private lateinit var sourcesPresenter: SourcesPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,16 +44,23 @@ class MainActivity : AppCompatActivity() {
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         setupDrawerContent(navigationView)
 
-        val newsFragment = ArticlesFragment.newInstance()
+        // init Sources fragment
+        val sourcesFragment = SourcesFragment.newInstance()
         supportFragmentManager.beginTransaction()
-                .replace(R.id.frags_container, newsFragment, newsFragment.tag)
+                .replace(R.id.frags_container, sourcesFragment, sourcesFragment.tag)
                 .commit()
 
-        // Create the presenter
+        sourcesPresenter = SourcesPresenter(NewsRepository.getInstance(
+                NewsRemoteDataSource.getInstance(applicationContext),
+                NewsLocalDataSource.getInstance(applicationContext)),
+                sourcesFragment)
+
+        // init Articles fragment
+        val articlesFragment = ArticlesFragment.newInstance()
         articlePresenter = ArticlesPresenter(NewsRepository.getInstance(
                 NewsRemoteDataSource.getInstance(applicationContext),
                 NewsLocalDataSource.getInstance(applicationContext)),
-                newsFragment)
+                articlesFragment)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

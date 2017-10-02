@@ -1,4 +1,4 @@
-package com.knews.android.articles
+package com.knews.android.sources
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -8,42 +8,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.knews.android.R
-import com.knews.android.data.Article
+import com.knews.android.data.Source
 
 /**
  * Created by asafvaron on 02/10/2017.
  */
-class ArticlesFragment : Fragment(), ArticlesContract.View {
+class SourcesFragment: Fragment(), SourcesContract.View {
 
-    override var presenter: ArticlesContract.Presenter? = null
+    private lateinit var sourcesAdapter: SourcesAdapter
 
-    private lateinit var articlesAdapter: ArticlesAdapter
+    override var presenter: SourcesContract.Presenter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.articles_fragment, container, false)
+        val root = inflater.inflate(R.layout.sources_fragment, container, false)
 
         with(root) {
-            val recyclerNews = findViewById<RecyclerView>(R.id.recycler_news)
-            setupRecyclerView(recyclerNews)
+            val recyclerSources = findViewById<RecyclerView>(R.id.sources_list)
+            setupRecyclerView(recyclerSources)
         }
 
         return root
     }
 
     private fun setupRecyclerView(recyclerNews: RecyclerView) {
-        articlesAdapter = ArticlesAdapter()
+        sourcesAdapter = SourcesAdapter()
         recyclerNews.layoutManager = LinearLayoutManager(context,
                 LinearLayoutManager.VERTICAL, false)
-        recyclerNews.adapter = articlesAdapter
+        recyclerNews.adapter = sourcesAdapter
     }
 
-    override fun showArticles(articles: List<Article>) {
-        articlesAdapter.setItems(articles)
+    override fun showSources(sources: List<Source>) {
+        sourcesAdapter.setItems(sources)
     }
 
     companion object {
-        fun newInstance(): ArticlesFragment {
-            return ArticlesFragment()
+        fun newInstance(): SourcesFragment {
+            return SourcesFragment()
         }
     }
 }
